@@ -22,8 +22,8 @@ mirror_postgres () {
 }
 
 # Login
-podman login registry.redhat.io -u $REGISTRY_REDHAT_USER -p "$REGISTRY_REDHAT_PASSWORD"
-podman login quay.io -u $QUAY_USER -p $QUAY_PASSWORD
+skopeo login registry.redhat.io -u $REGISTRY_REDHAT_USER -p "$REGISTRY_REDHAT_PASSWORD"
+skopeo login quay.io -u $QUAY_USER -p $QUAY_PASSWORD
 
 # MCE
 mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.2-rhel-8 postgresql_12 $DEST_URL_POSTGRES_12
