@@ -45,6 +45,7 @@ mirror_postgres acm-operator-bundle rhacm-2.9-rhel-8 postgresql_13 $DEST_URL_POS
 mirror_postgres acm-operator-bundle rhacm-2.10-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
 mirror_postgres acm-operator-bundle rhacm-2.11-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
 mirror_postgres acm-operator-bundle rhacm-2.12-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
+mirror_postgres acm-operator-bundle rhacm-2.13-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
 
 # Clean up authfile
 rm -f $AUTHFILE
