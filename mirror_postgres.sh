@@ -35,6 +35,8 @@ mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.3-rhel
 mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.4-rhel-8 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
 mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.5-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
 mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.6-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
+mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.7-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
+mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
 
 # ACM
 mirror_postgres acm-operator-bundle rhacm-2.7-rhel-8 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
@@ -42,6 +44,7 @@ mirror_postgres acm-operator-bundle rhacm-2.8-rhel-8 postgresql_13 $DEST_URL_POS
 mirror_postgres acm-operator-bundle rhacm-2.9-rhel-8 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
 mirror_postgres acm-operator-bundle rhacm-2.10-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
 mirror_postgres acm-operator-bundle rhacm-2.11-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
+mirror_postgres acm-operator-bundle rhacm-2.12-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
 
 # Clean up authfile
 rm -f $AUTHFILE
