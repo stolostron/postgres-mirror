@@ -9,9 +9,11 @@
 # Global Vars
 DEST_URL_POSTGRES_12=quay.io/acm-d/postgresql-12
 DEST_URL_POSTGRES_13=quay.io/acm-d/postgresql-13
+DEST_URL_CAPI_RHEL9=quay.io/acm-d/ose-cluster-api-rhel9
+DEST_URL_CAPA_RHEL9=quay.io/acm-d/ose-aws-cluster-api-controllers-rhel9
 
 # Functions
-mirror_postgres () {
+mirror_external_images () {
     git clone --branch=$2 --depth=1 https://pkgs.devel.redhat.com/git/containers/$1
     pushd $1/extras
     IMAGE_JSON=$(cat *.json | jq -r --arg version "$3" '.[] | select(.["image-key"] == $version)')
@@ -30,22 +32,25 @@ jq --arg redhat_auth "$REDHAT_AUTH" --arg quay_auth "$QUAY_AUTH" --null-input -r
     '{"auths":{"quay.io":{"auth":$quay_auth},"registry.redhat.io":{"auth":$redhat_auth}}}' > $AUTHFILE
 
 # MCE
-mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.2-rhel-8 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
-mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.3-rhel-8 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
-mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.4-rhel-8 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
-mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.5-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
-mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.6-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
-mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.7-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
-mirror_postgres multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.2-rhel-8 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.3-rhel-8 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.4-rhel-8 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.5-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.6-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.7-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
+
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 ose_cluster_api_rhel9 $DEST_URL_CAPI_RHEL9 $AUTHFILE
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 ose_aws_cluster_api_controllers_rhel9 $DEST_URL_CAPA_RHEL9 $AUTHFILE
 
 # ACM
-mirror_postgres acm-operator-bundle rhacm-2.7-rhel-8 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
-mirror_postgres acm-operator-bundle rhacm-2.8-rhel-8 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
-mirror_postgres acm-operator-bundle rhacm-2.9-rhel-8 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
-mirror_postgres acm-operator-bundle rhacm-2.10-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
-mirror_postgres acm-operator-bundle rhacm-2.11-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
-mirror_postgres acm-operator-bundle rhacm-2.12-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
-mirror_postgres acm-operator-bundle rhacm-2.13-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
+mirror_external_images acm-operator-bundle rhacm-2.7-rhel-8 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
+mirror_external_images acm-operator-bundle rhacm-2.8-rhel-8 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
+mirror_external_images acm-operator-bundle rhacm-2.9-rhel-8 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
+mirror_external_images acm-operator-bundle rhacm-2.10-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
+mirror_external_images acm-operator-bundle rhacm-2.11-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
+mirror_external_images acm-operator-bundle rhacm-2.12-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
+mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
 
 # Clean up authfile
 rm -f $AUTHFILE
