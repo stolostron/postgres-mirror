@@ -21,7 +21,7 @@ mirror_external_images () {
     IMAGE_JSON=$(cat *.json | jq -r --arg version "$3" '.[] | select(.["image-key"] == $version)')
     SOURCE_URL=$(echo $IMAGE_JSON | jq -r '.["image-remote"]')/$(echo $IMAGE_JSON | jq -r '.["image-name"]')@$(echo $IMAGE_JSON | jq -r '.["image-digest"]')
     # Get a version tag if there is one to use as a tag
-    IMAGE_VERSION="$(skopeo inspect --no-tags docker://$SOURCE_URL | jq -r '.Labels["version"]')"
+    IMAGE_VERSION="$(skopeo inspect --authfile=$5 --no-tags docker://$SOURCE_URL | jq -r '.Labels["version"]')"
     # Replace the source registry with an override if provided
     if [[ "$6" != "" ]]; then
         SOURCE_URL=$(echo $SOURCE_URL | sed -e "s/registry.redhat.io/$6/g")
