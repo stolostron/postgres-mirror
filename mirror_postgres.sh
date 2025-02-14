@@ -28,7 +28,8 @@ mirror_external_images () {
         SOURCE_URL=$(echo $SOURCE_URL | sed -e "s/registry.redhat.io/$6/g")
     fi
     # Get a version tag if there is one to use as a tag
-    IMAGE_VERSION="$(skopeo inspect --authfile=$5 --no-tags docker://$SOURCE_URL | jq -r '.Labels["version"]')"
+    IMAGE_REBUILD="$(skopeo inspect --authfile=$5 --no-tags docker://$SOURCE_URL | jq -r '.Labels["release"]')"
+    IMAGE_VERSION="$(skopeo inspect --authfile=$5 --no-tags docker://$SOURCE_URL | jq -r '.Labels["version"]')"-$IMAGE_REBUILD
     # Mirror with a version if present, omit if not
     if [[ "$IMAGE_VERSION" != "null" ]]; then
         echo "oc image mirror --registry-config=$5 --keep-manifest-list=true $SOURCE_URL $4:$IMAGE_VERSION"
