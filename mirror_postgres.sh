@@ -56,9 +56,15 @@ mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2
 mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.6-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
 mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.7-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
 mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.9-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
+
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 ose_aws_cluster_api_controllers_rhel9 $DEST_URL_CAPA_RHEL9 $AUTHFILE brew.registry.redhat.io
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.9-rhel-9 ose_aws_cluster_api_controllers_rhel9 $DEST_URL_CAPA_RHEL9 $AUTHFILE brew.registry.redhat.io
 
 mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 ose_cluster_api_rhel9 $DEST_URL_CAPI_RHEL9 $AUTHFILE brew.registry.redhat.io
-mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 ose_aws_cluster_api_controllers_rhel9 $DEST_URL_CAPA_RHEL9 $AUTHFILE brew.registry.redhat.io
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.9-rhel-9 ose_cluster_api_rhel9 $DEST_URL_CAPI_RHEL9 $AUTHFILE brew.registry.redhat.io
+
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.9-rhel-9 ose_baremetal_cluster_api_controllers_rhel9 $DEST_URL_CAPA_RHEL9 $AUTHFILE brew.registry.redhat.io
 
 # ACM
 mirror_external_images acm-operator-bundle rhacm-2.9-rhel-8 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
@@ -66,11 +72,16 @@ mirror_external_images acm-operator-bundle rhacm-2.10-rhel-9 postgresql_13 $DEST
 mirror_external_images acm-operator-bundle rhacm-2.11-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
 mirror_external_images acm-operator-bundle rhacm-2.12-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
 mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
+mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
 
 mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 postgresql_16 $DEST_URL_POSTGRES_16 $AUTHFILE
+mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 postgresql_16 $DEST_URL_POSTGRES_16 $AUTHFILE
 
 mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 ose_kube_rbac_proxy $DEST_URL_KUBE_RBAC_PROXY_RHEL9 $AUTHFILE brew.registry.redhat.io
+mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 ose_kube_rbac_proxy $DEST_URL_KUBE_RBAC_PROXY_RHEL9 $AUTHFILE brew.registry.redhat.io
+
 mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 volsync $DEST_URL_VOLSYNC_RHEL9 $AUTHFILE brew.registry.redhat.io
+mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 volsync $DEST_URL_VOLSYNC_RHEL9 $AUTHFILE brew.registry.redhat.io
 
 # Clean up authfile
 rm -f $AUTHFILE
