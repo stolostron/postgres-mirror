@@ -13,9 +13,12 @@ DEST_URL_KUBE_RBAC_PROXY_RHEL9=quay.io/acm-d/ose-kube-rbac-proxy-rhel9
 DEST_URL_CAPI_RHEL9=quay.io/acm-d/ose-cluster-api-rhel9
 DEST_URL_CAPA_RHEL9=quay.io/acm-d/ose-aws-cluster-api-controllers-rhel9
 DEST_URL_CAPB_RHEL9=quay.io/acm-d/ose-baremetal-cluster-api-controllers-rhel9
+DEST_URL_ORIGIN_CLI_RHEL9=quay.io/acm-d/origin-cli-rhel9
 DEST_URL_POSTGRES_12=quay.io/acm-d/postgresql-12
 DEST_URL_POSTGRES_13=quay.io/acm-d/postgresql-13
 DEST_URL_POSTGRES_16=quay.io/acm-d/postgresql-16
+DEST_URL_REDIS_7_C9S_RHEL9=quay.io/acm-d/redis-7-c9s-rhel9
+DEST_URL_REDIS_7_RHEL9=quay.io/acm-d/redis-7-rhel9
 DEST_URL_VOLSYNC_RHEL9=quay.io/acm-d/volsync-rhel9
 
 # Functions
@@ -83,6 +86,12 @@ mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 ose_kube_rbac_proxy
 
 mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 volsync $DEST_URL_VOLSYNC_RHEL9 $AUTHFILE brew.registry.redhat.io
 mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 volsync $DEST_URL_VOLSYNC_RHEL9 $AUTHFILE brew.registry.redhat.io
+
+mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 origin_cli $DEST_URL_ORIGIN_CLI_RHEL9 $AUTHFILE brew.registry.redhat.io
+mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 origin_cli $DEST_URL_ORIGIN_CLI_RHEL9 $AUTHFILE brew.registry.redhat.io
+
+mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 redis_7 $DEST_URL_REDIS_7_RHEL9 $AUTHFILE brew.registry.redhat.io
+mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 redis_7_c9s $DEST_URL_REDIS_7_C9S_RHEL9 $AUTHFILE brew.registry.redhat.io
 
 # Clean up authfile
 rm -f $AUTHFILE
