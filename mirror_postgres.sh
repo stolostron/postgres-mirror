@@ -23,6 +23,10 @@ DEST_URL_VOLSYNC_RHEL9=quay.io/acm-d/volsync-rhel9
 
 # Functions
 mirror_external_images () {
+    # DEBUG
+    echo "======= Mirroring $3 to $4... ======="
+    echo "--- Branch = $2 ---"
+    # Clone
     git clone --branch=$2 --depth=1 https://pkgs.devel.redhat.com/git/containers/$1
     pushd $1/extras
     IMAGE_JSON=$(cat *.json | jq -r --arg version "$3" '.[] | select(.["image-key"] == $version)')
@@ -31,19 +35,25 @@ mirror_external_images () {
     if [[ "$6" != "" ]]; then
         SOURCE_URL=$(echo $SOURCE_URL | sed -e "s/registry.redhat.io/$6/g")
     fi
+    # DEBUG
+    echo "--- Source URL = $SOURCE_URL ---"
     # Get a version tag if there is one to use as a tag
     IMAGE_REBUILD="$(skopeo inspect --authfile=$5 --no-tags docker://$SOURCE_URL | jq -r '.Labels["release"]')"
     IMAGE_VERSION="$(skopeo inspect --authfile=$5 --no-tags docker://$SOURCE_URL | jq -r '.Labels["version"]')"-$IMAGE_REBUILD
+    # DEBUG
+    echo "--- Image version = $IMAGE_VERSION ---"
     # Mirror with a version if present, omit if not
     if [[ "$IMAGE_VERSION" != "null" ]]; then
-        echo "oc image mirror --registry-config=$5 --keep-manifest-list=true $SOURCE_URL $4:$IMAGE_VERSION"
+        echo "--- oc image mirror --registry-config=$5 --keep-manifest-list=true $SOURCE_URL $4:$IMAGE_VERSION ---"
         oc image mirror --registry-config=$5 --keep-manifest-list=true $SOURCE_URL $4:$IMAGE_VERSION
     else
-        echo "oc image mirror --registry-config=$5 --keep-manifest-list=true $SOURCE_URL $4"
+        echo "--- oc image mirror --registry-config=$5 --keep-manifest-list=true $SOURCE_URL $4 ---"
         oc image mirror --registry-config=$5 --keep-manifest-list=true $SOURCE_URL $4
     fi
     popd
     rm -rf $1
+    # DEBUG
+    echo "======= End mirror: $3 ======="
 }
 
 # Configure Authfile without Podman
@@ -54,6 +64,7 @@ BREW_AUTH="$(echo -n "$RH_BREW_REGISTRY_USERNAME:$RH_BREW_REGISTRY_PASSWORD" | b
 jq --arg redhat_auth "$REDHAT_AUTH" --arg quay_auth "$QUAY_AUTH" --arg brew_auth $BREW_AUTH --null-input -r --tab \
     '{"auths":{"quay.io":{"auth":$quay_auth},"registry.redhat.io":{"auth":$redhat_auth}, "brew.registry.redhat.io":{"auth":$brew_auth}}}' > $AUTHFILE
 
+echo "============== Running mirror jobs =============="
 # MCE
 mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.4-rhel-8 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
 mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.5-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
@@ -93,5 +104,6 @@ mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 origin_cli $DEST_UR
 mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 redis $DEST_URL_REDIS_7 $AUTHFILE brew.registry.redhat.io
 mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 redis_7_c9s $DEST_URL_REDIS_7_C9S_RHEL9 $AUTHFILE brew.registry.redhat.io
 
+echo "============== End mirror jobs =============="
 # Clean up authfile
 rm -f $AUTHFILE
