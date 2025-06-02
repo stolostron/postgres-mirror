@@ -135,10 +135,10 @@ mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 redis $DEST_URL_RED
 mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 redis_7_c9s $DEST_URL_REDIS_7_C9S_RHEL9 $AUTHFILE brew.registry.redhat.io
 # ---------------------------------------------------------------------------
 echo "============== Running MRI mirror jobs =============="
-# memcached
-mirror_registry_image $REG_MC_URI $REG_MC_DIGEST $REG_MC_VERSION $REG_MC_DEST $AUTHFILE
-# flightctl-cli-artifacts-rhel9
-mirror_registry_image $REG_FCA_URI $REG_FCA_DIGEST $REG_FCA_VERSION $REG_FCA_DEST $AUTHFILE
+# memcached - DISABLING 
+#mirror_registry_image $REG_MC_URI $REG_MC_DIGEST $REG_MC_VERSION $REG_MC_DEST $AUTHFILE
+# flightctl-cli-artifacts-rhel9 - DISABLING 
+#mirror_registry_image $REG_FCA_URI $REG_FCA_DIGEST $REG_FCA_VERSION $REG_FCA_DEST $AUTHFILE
 # ---------------------------------------------------------------------------
 echo "============== End mirror jobs =============="
 # Clean up authfile
