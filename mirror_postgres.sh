@@ -149,10 +149,10 @@ echo "============== Running MRI mirror jobs =============="
 # memcached
 #mirror_registry_image $REG_MC_URI $REG_MC_DIGEST $REG_MC_VERSION $REG_MC_DEST $AUTHFILE
 mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_A1 $REG_MC_VERSION_A $REG_MC_DEST $AUTHFILE
-mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_A2 $REG_MC_VERSION_A $REG_MC_DEST $AUTHFILE
+#mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_A2 $REG_MC_VERSION_A $REG_MC_DEST $AUTHFILE
 
 mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_B1 $REG_MC_VERSION_B $REG_MC_DEST $AUTHFILE
-mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_B2 $REG_MC_VERSION_B $REG_MC_DEST $AUTHFILE
+#mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_B2 $REG_MC_VERSION_B $REG_MC_DEST $AUTHFILE
 
 # flightctl-cli-artifacts-rhel9 - DISABLING 
 #mirror_registry_image $REG_FCA_URI $REG_FCA_DIGEST $REG_FCA_VERSION $REG_FCA_DEST $AUTHFILE
