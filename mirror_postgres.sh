@@ -23,15 +23,26 @@ DEST_URL_REDIS_7=quay.io/acm-d/redis-7
 DEST_URL_VOLSYNC_RHEL9=quay.io/acm-d/volsync-rhel9
 # ---------------------------------------------------------------------------
 # MRI Variables
+
+# Memcached
 REG_MC_URI=rhel9/memcached
-REG_MC_DIGEST=sha256:ff14f267f1e2f872c7e1ef75cd17ad20d26730c224f10bb243d7b5840f593fe7
-REG_MC_VERSION=9.6-1747641981
 REG_MC_DEST=quay.io/acm-d/memcached
 
+REG_MC_VERSION_A=9.6-1747641981
+REG_MC_DIGEST_A1=sha256:b39f4ad63c694b76ac87ca168155cdcdff8d575d143ab941c2e068a68b30235c
+REG_MC_DIGEST_A2=sha256:ff14f267f1e2f872c7e1ef75cd17ad20d26730c224f10bb243d7b5840f593fe7
+
+REG_MC_VERSION_B=9.6-1749658726
+REG_MC_DIGEST_B1=sha256:f7b505b1deeb9e97eece142468feef244c47c8c7ce3e41b2517b1acee4c735ad
+REG_MC_DIGEST_B2=sha256:e493c0f389e21ab97a9c8bbd30c53e18227ecbb2cf84d201e8043722ae77bc79
+
+# Flightctl-cli-artifacts
 REG_FCA_URI=rhem/flightctl-cli-artifacts-rhel9
+REG_FCA_DEST=quay.io/acm-d/flightctl-cli-artifacts-rhel9
+
 REG_FCA_DIGEST=sha256:3aff03366b348976990d545eddafd86610d3491f799092848c47c722aa6bf6d9
 REG_FCA_VERSION=0.7.1-1747322739
-REG_FCA_DEST=quay.io/acm-d/flightctl-cli-artifacts-rhel9
+
 # ---------------------------------------------------------------------------
 # Functions
 mirror_external_images () {
@@ -135,8 +146,14 @@ mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 redis $DEST_URL_RED
 mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 redis_7_c9s $DEST_URL_REDIS_7_C9S_RHEL9 $AUTHFILE brew.registry.redhat.io
 # ---------------------------------------------------------------------------
 echo "============== Running MRI mirror jobs =============="
-# memcached - DISABLING 
+# memcached
 #mirror_registry_image $REG_MC_URI $REG_MC_DIGEST $REG_MC_VERSION $REG_MC_DEST $AUTHFILE
+mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_A1 $REG_MC_VERSION_A $REG_MC_DEST $AUTHFILE
+mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_A2 $REG_MC_VERSION_A $REG_MC_DEST $AUTHFILE
+
+mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_B1 $REG_MC_VERSION_B $REG_MC_DEST $AUTHFILE
+mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_B2 $REG_MC_VERSION_B $REG_MC_DEST $AUTHFILE
+
 # flightctl-cli-artifacts-rhel9 - DISABLING 
 #mirror_registry_image $REG_FCA_URI $REG_FCA_DIGEST $REG_FCA_VERSION $REG_FCA_DEST $AUTHFILE
 # ---------------------------------------------------------------------------
