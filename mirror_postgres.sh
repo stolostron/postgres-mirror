@@ -36,12 +36,38 @@ REG_MC_VERSION_B=9.6-1749658726
 REG_MC_DIGEST_B1=sha256:f7b505b1deeb9e97eece142468feef244c47c8c7ce3e41b2517b1acee4c735ad
 REG_MC_DIGEST_B2=sha256:e493c0f389e21ab97a9c8bbd30c53e18227ecbb2cf84d201e8043722ae77bc79
 
-# Flightctl-cli-artifacts
+# Flightctl - all images
+REG_FC_VERSION=v0.7.2
+
+# Flight Control API Server
+REG_FA_URI=rhem/flightctl-api-rhel9
+REG_FA_DEST=quay.io/acm-d/flightctl-api-rhel9
+REG_FA_DIGEST=sha256:83c6c7819e04aa58d961518367ce6ad3159a28300ca097967f630044d181be34
+
+# Flight Control CLI Downloads
 REG_FCA_URI=rhem/flightctl-cli-artifacts-rhel9
 REG_FCA_DEST=quay.io/acm-d/flightctl-cli-artifacts-rhel9
+REG_FCA_DIGEST=sha256:78a9372f35a9191ecf82b9ca92bfdd5c2f8a4e6d8e336a91267c5e5c7e5548b2
 
-REG_FCA_DIGEST=sha256:3aff03366b348976990d545eddafd86610d3491f799092848c47c722aa6bf6d9
-REG_FCA_VERSION=0.7.1-1747322739
+# Flight Control Periodic Job Manager
+REG_FP_URI=rhem/flightctl-periodic-rhel9
+REG_FP_DEST=quay.io/acm-d/flightctl-periodic-rhel9
+REG_FP_DIGEST=sha256:ee59f307e468e2b7b38f7c040898d587d441f8fb3d59cb022ae23e4717739e3f
+
+# Flight Control Asynchronous Job worker
+REG_FW_URI=rhem/flightctl-worker-rhel9
+REG_FW_DEST=quay.io/acm-d/flightctl-worker-rhel9
+REG_FW_DIGEST=sha256:1b1f6f85af0910f1acd029f54a608b25d3a2977c3d8b323266391543324305b4
+
+# Flight Control UI
+REG_FU_URI=rhem/flightctl-ui-rhel9
+REG_FU_DEST=quay.io/acm-d/flightctl-ui-rhel9
+REG_FU_DIGEST=sha256:940c0564ced75b7912d3ffc923a1f6bab9aed0f4a52962f7f894d08937b7d37e
+
+# Flight Control UI (OCP) 
+REG_FUO_URI=rhem/flightctl-ui-ocp-rhel9
+REG_FUO_DEST=quay.io/acm-d/flightctl-ui-ocp-rhel9
+REG_FUO_DIGEST=sha256:973eb3ca3da32c87ba308928a21fbd25514b2f6a6662300d4928479cb554cff3
 
 # ---------------------------------------------------------------------------
 # Functions
@@ -153,8 +179,24 @@ echo "============== Running MRI mirror jobs =============="
 #mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_B1 $REG_MC_VERSION_B $REG_MC_DEST $AUTHFILE
 #mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_B2 $REG_MC_VERSION_B $REG_MC_DEST $AUTHFILE
 
-# flightctl-cli-artifacts-rhel9 - DISABLING 
-#mirror_registry_image $REG_FCA_URI $REG_FCA_DIGEST $REG_FCA_VERSION $REG_FCA_DEST $AUTHFILE
+# Flight Control API Server
+mirror_registry_image $REG_FA_URI  $REG_FA_DIGEST  $REG_FC_VERSION $REG_FA_DEST  $AUTHFILE
+
+# Flight Control CLI Downloads
+mirror_registry_image $REG_FCA_URI $REG_FCA_DIGEST $REG_FC_VERSION $REG_FCA_DEST $AUTHFILE
+
+# Flight Control Periodic Job Manager
+mirror_registry_image $REG_FP_URI  $REG_FP_DIGEST  $REG_FC_VERSION $REG_FP_DEST  $AUTHFILE
+
+# Flight Control Asynchronous Job worker
+mirror_registry_image $REG_FW_URI  $REG_FW_DIGEST  $REG_FC_VERSION $REG_FW_DEST  $AUTHFILE
+
+# Flight Control UI
+mirror_registry_image $REG_FU_URI  $REG_FU_DIGEST  $REG_FC_VERSION $REG_FU_DEST  $AUTHFILE
+
+# Flight Control UI (OCP) 
+mirror_registry_image $REG_FUO_URI $REG_FUO_DIGEST $REG_FC_VERSION $REG_FUO_DEST $AUTHFILE
+
 # ---------------------------------------------------------------------------
 echo "============== End mirror jobs =============="
 # Clean up authfile
