@@ -179,23 +179,18 @@ echo "============== Running MRI mirror jobs =============="
 #mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_B1 $REG_MC_VERSION_B $REG_MC_DEST $AUTHFILE
 #mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_B2 $REG_MC_VERSION_B $REG_MC_DEST $AUTHFILE
 
-# Flight Control API Server
-mirror_registry_image $REG_FA_URI  $REG_FA_DIGEST  $REG_FC_VERSION $REG_FA_DEST  $AUTHFILE
-
-# Flight Control CLI Downloads
-mirror_registry_image $REG_FCA_URI $REG_FCA_DIGEST $REG_FC_VERSION $REG_FCA_DEST $AUTHFILE
-
-# Flight Control Periodic Job Manager
-mirror_registry_image $REG_FP_URI  $REG_FP_DIGEST  $REG_FC_VERSION $REG_FP_DEST  $AUTHFILE
-
-# Flight Control Asynchronous Job worker
-mirror_registry_image $REG_FW_URI  $REG_FW_DIGEST  $REG_FC_VERSION $REG_FW_DEST  $AUTHFILE
-
-# Flight Control UI
-mirror_registry_image $REG_FU_URI  $REG_FU_DIGEST  $REG_FC_VERSION $REG_FU_DEST  $AUTHFILE
-
-# Flight Control UI (OCP) 
-mirror_registry_image $REG_FUO_URI $REG_FUO_DIGEST $REG_FC_VERSION $REG_FUO_DEST $AUTHFILE
+## Flight Control API Server
+#mirror_registry_image $REG_FA_URI  $REG_FA_DIGEST  $REG_FC_VERSION $REG_FA_DEST  $AUTHFILE
+## Flight Control CLI Downloads
+#mirror_registry_image $REG_FCA_URI $REG_FCA_DIGEST $REG_FC_VERSION $REG_FCA_DEST $AUTHFILE
+## Flight Control Periodic Job Manager
+#mirror_registry_image $REG_FP_URI  $REG_FP_DIGEST  $REG_FC_VERSION $REG_FP_DEST  $AUTHFILE
+## Flight Control Asynchronous Job worker
+#mirror_registry_image $REG_FW_URI  $REG_FW_DIGEST  $REG_FC_VERSION $REG_FW_DEST  $AUTHFILE
+## Flight Control UI
+#mirror_registry_image $REG_FU_URI  $REG_FU_DIGEST  $REG_FC_VERSION $REG_FU_DEST  $AUTHFILE
+## Flight Control UI (OCP) 
+#mirror_registry_image $REG_FUO_URI $REG_FUO_DIGEST $REG_FC_VERSION $REG_FUO_DEST $AUTHFILE
 
 # ---------------------------------------------------------------------------
 echo "============== End mirror jobs =============="
