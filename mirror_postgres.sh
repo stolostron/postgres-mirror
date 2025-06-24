@@ -47,7 +47,7 @@ REG_FA_DIGEST=sha256:83c6c7819e04aa58d961518367ce6ad3159a28300ca097967f630044d18
 # Flight Control CLI Downloads
 REG_FCA_URI=rhem/flightctl-cli-artifacts-rhel9
 REG_FCA_DEST=quay.io/acm-d/flightctl-cli-artifacts-rhel9
-REG_FCA_DIGEST=sha256:78a9372f35a9191ecf82b9ca92bfdd5c2f8a4e6d8e336a91267c5e5c7e5548b2
+REG_FCA_DIGEST=sha256:3491ec932d90112e89f3a4cebe5bdd9ed6a7811f116df43bab8bb5f827129361
 
 # Flight Control Periodic Job Manager
 REG_FP_URI=rhem/flightctl-periodic-rhel9
@@ -181,8 +181,8 @@ echo "============== Running MRI mirror jobs =============="
 
 ## Flight Control API Server
 #mirror_registry_image $REG_FA_URI  $REG_FA_DIGEST  $REG_FC_VERSION $REG_FA_DEST  $AUTHFILE
-## Flight Control CLI Downloads
-#mirror_registry_image $REG_FCA_URI $REG_FCA_DIGEST $REG_FC_VERSION $REG_FCA_DEST $AUTHFILE
+# Flight Control CLI Downloads
+mirror_registry_image $REG_FCA_URI $REG_FCA_DIGEST $REG_FC_VERSION $REG_FCA_DEST $AUTHFILE
 ## Flight Control Periodic Job Manager
 #mirror_registry_image $REG_FP_URI  $REG_FP_DIGEST  $REG_FC_VERSION $REG_FP_DEST  $AUTHFILE
 ## Flight Control Asynchronous Job worker
