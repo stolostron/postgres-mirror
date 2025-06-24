@@ -181,8 +181,8 @@ echo "============== Running MRI mirror jobs =============="
 
 ## Flight Control API Server
 #mirror_registry_image $REG_FA_URI  $REG_FA_DIGEST  $REG_FC_VERSION $REG_FA_DEST  $AUTHFILE
-# Flight Control CLI Downloads
-mirror_registry_image $REG_FCA_URI $REG_FCA_DIGEST $REG_FC_VERSION $REG_FCA_DEST $AUTHFILE
+## Flight Control CLI Downloads
+#mirror_registry_image $REG_FCA_URI $REG_FCA_DIGEST $REG_FC_VERSION $REG_FCA_DEST $AUTHFILE
 ## Flight Control Periodic Job Manager
 #mirror_registry_image $REG_FP_URI  $REG_FP_DIGEST  $REG_FC_VERSION $REG_FP_DEST  $AUTHFILE
 ## Flight Control Asynchronous Job worker
