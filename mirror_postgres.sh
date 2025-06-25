@@ -24,6 +24,18 @@ DEST_URL_VOLSYNC_RHEL9=quay.io/acm-d/volsync-rhel9
 # ---------------------------------------------------------------------------
 # MRI Variables
 
+# openshift4/ose-cli-rhel9
+REG_OCR_URI=openshift4/ose-cli-rhel9
+REG_OCR_DEST=acm-d/ose-cli-rhel9
+REG_OCR_VERSION=v4.19.0-202506161807.p0.gfa1fd95.assembly.stream.el9
+REG_OCR_DIGEST=2bc7ba0ff29191952dbd7bff883b378c868b3728f4cd1b491e23ef4c593e0bde
+
+# rhel9/redis-7
+REG_R7_URI=rhel9/redis-7
+REG_R7_DEST=acm-d/redis-7
+REG_R7_VERSION=9.6-1749629182
+REG_R7_DIGEST=a3bb7c5987829cf7d886d9418ac24f55783de71a6cbbbcde0fa17e609bb58a2e
+
 # Memcached
 REG_MC_URI=rhel9/memcached
 REG_MC_DEST=quay.io/acm-d/memcached
@@ -172,6 +184,12 @@ mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 redis $DEST_URL_RED
 mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 redis_7_c9s $DEST_URL_REDIS_7_C9S_RHEL9 $AUTHFILE brew.registry.redhat.io
 # ---------------------------------------------------------------------------
 echo "============== Running MRI mirror jobs =============="
+# openshift4/ose-cli-rhel9
+mirror_registry_image $REG_OCR_URI $REG_OCR_DIGEST $REG_OCR_VERSION $REG_OCR_DEST $AUTHFILE
+
+# rhel9/redis-7
+mirror_registry_image $REG_R7_URI $REG_R7_DIGEST $REG_R7_VERSION $REG_R7_DEST $AUTHFILE
+
 # memcached
 #mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_A1 $REG_MC_VERSION_A $REG_MC_DEST $AUTHFILE
 #mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_A2 $REG_MC_VERSION_A $REG_MC_DEST $AUTHFILE
