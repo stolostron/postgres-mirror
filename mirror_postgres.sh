@@ -28,13 +28,13 @@ DEST_URL_VOLSYNC_RHEL9=quay.io/acm-d/volsync-rhel9
 REG_OCR_URI=openshift4/ose-cli-rhel9
 REG_OCR_DEST=quay.io/acm-d/ose-cli-rhel9
 REG_OCR_VERSION=v4.19.0-202506161807.p0.gfa1fd95.assembly.stream.el9
-REG_OCR_DIGEST=2bc7ba0ff29191952dbd7bff883b378c868b3728f4cd1b491e23ef4c593e0bde
+REG_OCR_DIGEST=sha256:2bc7ba0ff29191952dbd7bff883b378c868b3728f4cd1b491e23ef4c593e0bde
 
 # rhel9/redis-7
 REG_R7_URI=rhel9/redis-7
 REG_R7_DEST=quay.io/acm-d/redis-7
 REG_R7_VERSION=9.6-1749629182
-REG_R7_DIGEST=a3bb7c5987829cf7d886d9418ac24f55783de71a6cbbbcde0fa17e609bb58a2e
+REG_R7_DIGEST=sha256:a3bb7c5987829cf7d886d9418ac24f55783de71a6cbbbcde0fa17e609bb58a2e
 
 # Memcached
 REG_MC_URI=rhel9/memcached
