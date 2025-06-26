@@ -185,10 +185,10 @@ mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 redis_7_c9s $DEST_U
 # ---------------------------------------------------------------------------
 echo "============== Running MRI mirror jobs =============="
 # openshift4/ose-cli-rhel9
-mirror_registry_image $REG_OCR_URI $REG_OCR_DIGEST $REG_OCR_VERSION $REG_OCR_DEST $AUTHFILE
+#mirror_registry_image $REG_OCR_URI $REG_OCR_DIGEST $REG_OCR_VERSION $REG_OCR_DEST $AUTHFILE
 
 # rhel9/redis-7
-mirror_registry_image $REG_R7_URI $REG_R7_DIGEST $REG_R7_VERSION $REG_R7_DEST $AUTHFILE
+#mirror_registry_image $REG_R7_URI $REG_R7_DIGEST $REG_R7_VERSION $REG_R7_DEST $AUTHFILE
 
 # memcached
 #mirror_registry_image $REG_MC_URI $REG_MC_DIGEST_A1 $REG_MC_VERSION_A $REG_MC_DEST $AUTHFILE
