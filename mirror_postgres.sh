@@ -185,7 +185,7 @@ echo "============== Running MRI mirror jobs =============="
 #mirror_registry_image $REG_R7_URI $REG_R7_DIGEST $REG_R7_VERSION $REG_R7_DEST $AUTHFILE
 
 # memcached
-mirror_registry_image $REG_MC_URI $REG_MC_DIGEST $REG_MC_VERSION $REG_MC_DEST $AUTHFILE
+#mirror_registry_image $REG_MC_URI $REG_MC_DIGEST $REG_MC_VERSION $REG_MC_DEST $AUTHFILE
 
 ## Flight Control API Server
 #mirror_registry_image $REG_FA_URI  $REG_FA_DIGEST  $REG_FC_VERSION $REG_FA_DEST  $AUTHFILE
