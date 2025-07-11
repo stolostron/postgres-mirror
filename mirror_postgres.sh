@@ -24,11 +24,23 @@ DEST_URL_VOLSYNC_RHEL9=quay.io/acm-d/volsync-rhel9
 # ---------------------------------------------------------------------------
 # MRI Variables
 
+# openshift4/ose-baremetal-cluster-api-controllers-rhel9
+REG_PM3_URI=openshift4/ose-baremetal-cluster-api-controllers-rhel9
+REG_PM3_DEST=quay.io/acm-d/ose-baremetal-cluster-api-controllers-rhel9
+REG_PM3_VERSION=v4.19.0-202507011209.p0.g06a66db.assembly.stream.el9
+REG_PM3_DIGEST=sha256:f855d5ce17d3ac4560afc73c35d03f045f84551fdccc00312c890288a889b9ce
+
 # openshift4/ose-cli-rhel9
 REG_OCR_URI=openshift4/ose-cli-rhel9
 REG_OCR_DEST=quay.io/acm-d/ose-cli-rhel9
 REG_OCR_VERSION=v4.19.0-202506161807.p0.gfa1fd95.assembly.stream.el9
 REG_OCR_DIGEST=sha256:2bc7ba0ff29191952dbd7bff883b378c868b3728f4cd1b491e23ef4c593e0bde
+
+# openshift4/ose-cluster-api-rhel9
+REG_CAPI_URI=openshift4/ose-cluster-api-rhel9
+REG_CAPI_DEST=quay.io/acm-d/ose-cluster-api-rhel9
+REG_CAPI_VERSION=v4.19.0-202507011209.p0.g479f0c4.assembly.stream.el9
+REG_CAPI_DIGEST=sha256:9a72b8081a57846d942981ced07da86ad8e197309a1bc3c9d53876528b58f8ec
 
 # rhel9/redis-7
 REG_R7_URI=rhel9/redis-7
@@ -184,11 +196,15 @@ mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 redis $DEST_URL_RED
 mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 redis_7_c9s $DEST_URL_REDIS_7_C9S_RHEL9 $AUTHFILE brew.registry.redhat.io
 # ---------------------------------------------------------------------------
 echo "============== Running MRI mirror jobs =============="
-# AWS Cluster API Provider
-#mirror_registry_image $REG_OACAC_URI $REG_OACAC_DIGEST $REG_OACAC_VERSION $REG_OACAC_DEST $AUTHFILE
+
+# Cluster API Provider Metal3
+mirror_registry_image $REG_PM3_URI $REG_PM3_DIGEST $REG_PM3_VERSION $REG_PM3_DEST $AUTHFILE
 
 # openshift4/ose-cli-rhel9
 #mirror_registry_image $REG_OCR_URI $REG_OCR_DIGEST $REG_OCR_VERSION $REG_OCR_DEST $AUTHFILE
+
+# Cluster API
+mirror_registry_image $REG_CAPI_URI $REG_CAPI_DIGEST $REG_CAPI_VERSION $REG_CAPI_DEST $AUTHFILE
 
 # rhel9/redis-7
 #mirror_registry_image $REG_R7_URI $REG_R7_DIGEST $REG_R7_VERSION $REG_R7_DEST $AUTHFILE
@@ -208,6 +224,9 @@ echo "============== Running MRI mirror jobs =============="
 #mirror_registry_image $REG_FU_URI  $REG_FU_DIGEST  $REG_FC_VERSION $REG_FU_DEST  $AUTHFILE
 ## Flight Control UI (OCP) 
 #mirror_registry_image $REG_FUO_URI $REG_FUO_DIGEST $REG_FC_VERSION $REG_FUO_DEST $AUTHFILE
+
+# AWS Cluster API Provider
+#mirror_registry_image $REG_OACAC_URI $REG_OACAC_DIGEST $REG_OACAC_VERSION $REG_OACAC_DEST $AUTHFILE
 
 # ---------------------------------------------------------------------------
 echo "============== End mirror jobs =============="
