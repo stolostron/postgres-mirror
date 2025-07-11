@@ -185,7 +185,7 @@ mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 redis_7_c9s $DEST_U
 # ---------------------------------------------------------------------------
 echo "============== Running MRI mirror jobs =============="
 # AWS Cluster API Provider
-mirror_registry_image $REG_OACAC_URI $REG_OACAC_DIGEST $REG_OACAC_VERSION $REG_OACAC_DEST $AUTHFILE
+#mirror_registry_image $REG_OACAC_URI $REG_OACAC_DIGEST $REG_OACAC_VERSION $REG_OACAC_DEST $AUTHFILE
 
 # openshift4/ose-cli-rhel9
 #mirror_registry_image $REG_OCR_URI $REG_OCR_DIGEST $REG_OCR_VERSION $REG_OCR_DEST $AUTHFILE
