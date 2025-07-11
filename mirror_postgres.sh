@@ -75,6 +75,12 @@ REG_FUO_URI=rhem/flightctl-ui-ocp-rhel9
 REG_FUO_DEST=quay.io/acm-d/flightctl-ui-ocp-rhel9
 REG_FUO_DIGEST=sha256:973eb3ca3da32c87ba308928a21fbd25514b2f6a6662300d4928479cb554cff3
 
+# AWS Cluster API Provider
+REG_OACAC_URI=openshift4/ose-aws-cluster-api-controllers-rhel9
+REG_OACAC_DEST=quay.io/acm-d/ose-aws-cluster-api-controllers-rhel9
+REG_OACAC_VERSION=v4.19.0-202507011209.p0.g8024520.assembly.stream.el9
+REG_OACAC_DIGEST=sha256:cf13b0658271cd0dbd1ce6dcc350e64c5459ef02ba4dc88a0031de9d6f26ffd1
+
 # ---------------------------------------------------------------------------
 # Functions
 mirror_external_images () {
@@ -178,6 +184,9 @@ mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 redis $DEST_URL_RED
 mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 redis_7_c9s $DEST_URL_REDIS_7_C9S_RHEL9 $AUTHFILE brew.registry.redhat.io
 # ---------------------------------------------------------------------------
 echo "============== Running MRI mirror jobs =============="
+# AWS Cluster API Provider
+mirror_registry_image $REG_OACAC_URI $REG_OACAC_DIGEST $REG_OACAC_VERSION $REG_OACAC_DEST $AUTHFILE
+
 # openshift4/ose-cli-rhel9
 #mirror_registry_image $REG_OCR_URI $REG_OCR_DIGEST $REG_OCR_VERSION $REG_OCR_DEST $AUTHFILE
 
