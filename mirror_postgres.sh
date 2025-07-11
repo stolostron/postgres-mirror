@@ -198,13 +198,13 @@ mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 redis_7_c9s $DEST_U
 echo "============== Running MRI mirror jobs =============="
 
 # Cluster API Provider Metal3
-mirror_registry_image $REG_PM3_URI $REG_PM3_DIGEST $REG_PM3_VERSION $REG_PM3_DEST $AUTHFILE
+#mirror_registry_image $REG_PM3_URI $REG_PM3_DIGEST $REG_PM3_VERSION $REG_PM3_DEST $AUTHFILE
 
 # openshift4/ose-cli-rhel9
 #mirror_registry_image $REG_OCR_URI $REG_OCR_DIGEST $REG_OCR_VERSION $REG_OCR_DEST $AUTHFILE
 
 # Cluster API
-mirror_registry_image $REG_CAPI_URI $REG_CAPI_DIGEST $REG_CAPI_VERSION $REG_CAPI_DEST $AUTHFILE
+#mirror_registry_image $REG_CAPI_URI $REG_CAPI_DIGEST $REG_CAPI_VERSION $REG_CAPI_DEST $AUTHFILE
 
 # rhel9/redis-7
 #mirror_registry_image $REG_R7_URI $REG_R7_DIGEST $REG_R7_VERSION $REG_R7_DEST $AUTHFILE
