@@ -235,7 +235,7 @@ echo "============== Running MRI mirror jobs =============="
 #mirror_registry_image $REG_OACAC_URI $REG_OACAC_DIGEST $REG_OACAC_VERSION $REG_OACAC_DEST $AUTHFILE
 
 # Search rhel9/postgresql-16:9.5-1732622748
-mirror_registry_image $REG_SEARCH_PG_URI $REG_SEARCH_PG_DIGEST $REG_SEARCH_PG_VERSION $REG_SEARCH_PG_DEST $AUTHFILE
+#mirror_registry_image $REG_SEARCH_PG_URI $REG_SEARCH_PG_DIGEST $REG_SEARCH_PG_VERSION $REG_SEARCH_PG_DEST $AUTHFILE
 
 # ---------------------------------------------------------------------------
 echo "============== End mirror jobs =============="
