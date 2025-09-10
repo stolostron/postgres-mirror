@@ -244,7 +244,7 @@ echo "============== Running MRI mirror jobs =============="
 #mirror_registry_image $REG_SEARCH_PG_URI $REG_SEARCH_PG_DIGEST $REG_SEARCH_PG_VERSION $REG_SEARCH_PG_DEST $AUTHFILE
 
 # Proxy for Kubernetes RBAC authorization
-mirror_registry_image $REG_OKRP_PG_URI $REG_OKRP_PG_DIGEST $REG_OKRP_PG_VERSION $REG_OKRP_PG_DEST $AUTHFILE
+#mirror_registry_image $REG_OKRP_PG_URI $REG_OKRP_PG_DIGEST $REG_OKRP_PG_VERSION $REG_OKRP_PG_DEST $AUTHFILE
 # ---------------------------------------------------------------------------
 echo "============== End mirror jobs =============="
 # Clean up authfile
