@@ -99,6 +99,12 @@ REG_SEARCH_PG_DEST=quay.io/acm-d/postgresql-16
 REG_SEARCH_PG_VERSION=9.5-1732622748
 REG_SEARCH_PG_DIGEST=sha256:d8b5726688d4e0d37f39fc12131a04f057f1093744ce06e82cf777e1e6f3e0ae
 
+# Proxy for Kubernetes RBAC authorization
+REG_OKRP_PG_URI=openshift4/ose-kube-rbac-proxy-rhel9
+REG_OKRP_PG_DEST=quay.io/acm-d/ose-kube-rbac-proxy-rhel9
+REG_OKRP_PG_VERSION=v4.19.0-202507291138.p0.g5912775.assembly.stream.el9
+REG_OKRP_PG_DIGEST=sha256:c1a84feb88d53e93bdcf2cd5f76e2cbb18541c8b0e2979c132a888d6c280b664
+
 # ---------------------------------------------------------------------------
 # Functions
 mirror_external_images () {
@@ -237,6 +243,8 @@ echo "============== Running MRI mirror jobs =============="
 # Search rhel9/postgresql-16:9.5-1732622748
 #mirror_registry_image $REG_SEARCH_PG_URI $REG_SEARCH_PG_DIGEST $REG_SEARCH_PG_VERSION $REG_SEARCH_PG_DEST $AUTHFILE
 
+# Proxy for Kubernetes RBAC authorization
+mirror_registry_image $REG_OKRP_PG_URI $REG_OKRP_PG_DIGEST $REG_OKRP_PG_VERSION $REG_OKRP_PG_DEST $AUTHFILE
 # ---------------------------------------------------------------------------
 echo "============== End mirror jobs =============="
 # Clean up authfile
