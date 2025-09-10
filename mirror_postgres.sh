@@ -93,6 +93,12 @@ REG_OACAC_DEST=quay.io/acm-d/ose-aws-cluster-api-controllers-rhel9
 REG_OACAC_VERSION=v4.19.0-202507011209.p0.g8024520.assembly.stream.el9
 REG_OACAC_DIGEST=sha256:cf13b0658271cd0dbd1ce6dcc350e64c5459ef02ba4dc88a0031de9d6f26ffd1
 
+# Search rhel9/postgresql-16:9.5-1732622748
+REG_SEARCH_PG_URI=rhel9/postgresql-16
+REG_SEARCH_PG_DEST=quay.io/acm-d/postgresql-16
+REG_SEARCH_PG_VERSION=9.5-1732622748
+REG_SEARCH_PG_DIGEST=sha256:d8b5726688d4e0d37f39fc12131a04f057f1093744ce06e82cf777e1e6f3e0ae
+
 # ---------------------------------------------------------------------------
 # Functions
 mirror_external_images () {
@@ -227,6 +233,9 @@ echo "============== Running MRI mirror jobs =============="
 
 # AWS Cluster API Provider
 #mirror_registry_image $REG_OACAC_URI $REG_OACAC_DIGEST $REG_OACAC_VERSION $REG_OACAC_DEST $AUTHFILE
+
+# Search rhel9/postgresql-16:9.5-1732622748
+mirror_registry_image $REG_SEARCH_PG_URI $REG_SEARCH_PG_DIGEST $REG_SEARCH_PG_VERSION $REG_SEARCH_PG_DEST $AUTHFILE
 
 # ---------------------------------------------------------------------------
 echo "============== End mirror jobs =============="
