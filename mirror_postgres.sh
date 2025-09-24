@@ -21,26 +21,34 @@ DEST_URL_POSTGRES_16=quay.io/acm-d/postgresql-16
 DEST_URL_REDIS_7_C9S_RHEL9=quay.io/acm-d/redis-7-c9s-rhel9
 DEST_URL_REDIS_7=quay.io/acm-d/redis-7
 DEST_URL_VOLSYNC_RHEL9=quay.io/acm-d/volsync-rhel9
+BREW_RRI=brew.registry.redhat.io
 # ---------------------------------------------------------------------------
 # MRI Variables
+
+# AWS Cluster API Provider
+REG_OACAC_URI=openshift4/ose-aws-cluster-api-controllers-rhel9
+REG_OACAC_DEST=quay.io/acm-d/ose-aws-cluster-api-controllers-rhel9
+REG_OACAC_VERSION=v4.20.0-202508121146.p0.gd351913.assembly.stream.el9
+REG_OACAC_DIGEST=sha256:25033880b990da63cf170cb3855ef6523bc0a5f11d2fa57a2b3887d61b1a2a60
 
 # openshift4/ose-baremetal-cluster-api-controllers-rhel9
 REG_PM3_URI=openshift4/ose-baremetal-cluster-api-controllers-rhel9
 REG_PM3_DEST=quay.io/acm-d/ose-baremetal-cluster-api-controllers-rhel9
-REG_PM3_VERSION=v4.19.0-202507011209.p0.g06a66db.assembly.stream.el9
-REG_PM3_DIGEST=sha256:f855d5ce17d3ac4560afc73c35d03f045f84551fdccc00312c890288a889b9ce
+REG_PM3_VERSION=v4.20.0-202508121146.p0.gf782ba7.assembly.stream.el9
+REG_PM3_DIGEST=sha256:ce351e3808d9f8cf69433cd090a3c6e46ebaece20c21983fe5e68eff762dd6de
 
+# openshift4/ose-cluster-api-rhel9
+REG_CAPI_URI=openshift4/ose-cluster-api-rhel9
+REG_CAPI_DEST=quay.io/acm-d/ose-cluster-api-rhel9
+REG_CAPI_VERSION=v4.20.0-202508121146.p0.gde1db29.assembly.stream.el9
+REG_CAPI_DIGEST=sha256:4e322aca66be14da5aa73ff07cedbc4436a04015ec9c417177a182de10bdd6c6
+
+# ---------------------------------------------------------------------------
 # openshift4/ose-cli-rhel9
 REG_OCR_URI=openshift4/ose-cli-rhel9
 REG_OCR_DEST=quay.io/acm-d/ose-cli-rhel9
 REG_OCR_VERSION=v4.19.0-202506161807.p0.gfa1fd95.assembly.stream.el9
 REG_OCR_DIGEST=sha256:2bc7ba0ff29191952dbd7bff883b378c868b3728f4cd1b491e23ef4c593e0bde
-
-# openshift4/ose-cluster-api-rhel9
-REG_CAPI_URI=openshift4/ose-cluster-api-rhel9
-REG_CAPI_DEST=quay.io/acm-d/ose-cluster-api-rhel9
-REG_CAPI_VERSION=v4.19.0-202507011209.p0.g479f0c4.assembly.stream.el9
-REG_CAPI_DIGEST=sha256:9a72b8081a57846d942981ced07da86ad8e197309a1bc3c9d53876528b58f8ec
 
 # rhel9/redis-7
 REG_R7_URI=rhel9/redis-7
@@ -86,12 +94,6 @@ REG_FU_DIGEST=sha256:940c0564ced75b7912d3ffc923a1f6bab9aed0f4a52962f7f894d08937b
 REG_FUO_URI=rhem/flightctl-ui-ocp-rhel9
 REG_FUO_DEST=quay.io/acm-d/flightctl-ui-ocp-rhel9
 REG_FUO_DIGEST=sha256:973eb3ca3da32c87ba308928a21fbd25514b2f6a6662300d4928479cb554cff3
-
-# AWS Cluster API Provider
-REG_OACAC_URI=openshift4/ose-aws-cluster-api-controllers-rhel9
-REG_OACAC_DEST=quay.io/acm-d/ose-aws-cluster-api-controllers-rhel9
-REG_OACAC_VERSION=v4.19.0-202507011209.p0.g8024520.assembly.stream.el9
-REG_OACAC_DIGEST=sha256:cf13b0658271cd0dbd1ce6dcc350e64c5459ef02ba4dc88a0031de9d6f26ffd1
 
 # Search rhel9/postgresql-16:9.5-1732622748
 REG_SEARCH_PG_URI=rhel9/postgresql-16
@@ -161,7 +163,10 @@ mirror_registry_image () {
     SOURCE_URI="registry.redhat.io/$1@$2"
     IMAGE_VERSION="$3"
     DEST="$4"
-
+    # Replace the source registry with an override if provided
+    if [[ "$6" != "" ]]; then
+        SOURCE_URI=$(echo $SOURCE_URI | sed -e "s/registry.redhat.io/$6/g")
+    fi
     # DEBUG
     echo "--- Source URI = $SOURCE_URI ---"
     echo "--- Image version = $IMAGE_VERSION ---"
@@ -190,13 +195,13 @@ mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2
 mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
 mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.9-rhel-9 postgresql_12 $DEST_URL_POSTGRES_12 $AUTHFILE
 
-mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 ose_aws_cluster_api_controllers_rhel9 $DEST_URL_CAPA_RHEL9 $AUTHFILE brew.registry.redhat.io
-mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.9-rhel-9 ose_aws_cluster_api_controllers_rhel9 $DEST_URL_CAPA_RHEL9 $AUTHFILE brew.registry.redhat.io
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 ose_aws_cluster_api_controllers_rhel9 $DEST_URL_CAPA_RHEL9 $AUTHFILE $BREW_RRI
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.9-rhel-9 ose_aws_cluster_api_controllers_rhel9 $DEST_URL_CAPA_RHEL9 $AUTHFILE $BREW_RRI
 
-mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 ose_cluster_api_rhel9 $DEST_URL_CAPI_RHEL9 $AUTHFILE brew.registry.redhat.io
-mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.9-rhel-9 ose_cluster_api_rhel9 $DEST_URL_CAPI_RHEL9 $AUTHFILE brew.registry.redhat.io
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.8-rhel-9 ose_cluster_api_rhel9 $DEST_URL_CAPI_RHEL9 $AUTHFILE $BREW_RRI
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.9-rhel-9 ose_cluster_api_rhel9 $DEST_URL_CAPI_RHEL9 $AUTHFILE $BREW_RRI
 
-mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.9-rhel-9 ose_baremetal_cluster_api_controllers_rhel9 $DEST_URL_CAPB_RHEL9 $AUTHFILE brew.registry.redhat.io
+mirror_external_images multicluster-engine-operator-bundle multicluster-engine-2.9-rhel-9 ose_baremetal_cluster_api_controllers_rhel9 $DEST_URL_CAPB_RHEL9 $AUTHFILE $BREW_RRI
 
 # ACM
 mirror_external_images acm-operator-bundle rhacm-2.9-rhel-8 postgresql_13 $DEST_URL_POSTGRES_13 $AUTHFILE
@@ -209,28 +214,31 @@ mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 postgresql_13 $DEST
 mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 postgresql_16 $DEST_URL_POSTGRES_16 $AUTHFILE
 mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 postgresql_16 $DEST_URL_POSTGRES_16 $AUTHFILE
 
-mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 ose_kube_rbac_proxy $DEST_URL_KUBE_RBAC_PROXY_RHEL9 $AUTHFILE brew.registry.redhat.io
-mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 ose_kube_rbac_proxy $DEST_URL_KUBE_RBAC_PROXY_RHEL9 $AUTHFILE brew.registry.redhat.io
+mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 ose_kube_rbac_proxy $DEST_URL_KUBE_RBAC_PROXY_RHEL9 $AUTHFILE $BREW_RRI
+mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 ose_kube_rbac_proxy $DEST_URL_KUBE_RBAC_PROXY_RHEL9 $AUTHFILE $BREW_RRI
 
-mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 volsync $DEST_URL_VOLSYNC_RHEL9 $AUTHFILE brew.registry.redhat.io
-mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 volsync $DEST_URL_VOLSYNC_RHEL9 $AUTHFILE brew.registry.redhat.io
+mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 volsync $DEST_URL_VOLSYNC_RHEL9 $AUTHFILE $BREW_RRI
+mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 volsync $DEST_URL_VOLSYNC_RHEL9 $AUTHFILE $BREW_RRI
 
-mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 origin_cli $DEST_URL_ORIGIN_CLI_RHEL9 $AUTHFILE brew.registry.redhat.io
-mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 origin_cli $DEST_URL_ORIGIN_CLI_RHEL9 $AUTHFILE brew.registry.redhat.io
+mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 origin_cli $DEST_URL_ORIGIN_CLI_RHEL9 $AUTHFILE $BREW_RRI
+mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 origin_cli $DEST_URL_ORIGIN_CLI_RHEL9 $AUTHFILE $BREW_RRI
 
-mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 redis $DEST_URL_REDIS_7 $AUTHFILE brew.registry.redhat.io
-mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 redis_7_c9s $DEST_URL_REDIS_7_C9S_RHEL9 $AUTHFILE brew.registry.redhat.io
+mirror_external_images acm-operator-bundle rhacm-2.13-rhel-9 redis $DEST_URL_REDIS_7 $AUTHFILE $BREW_RRI
+mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 redis_7_c9s $DEST_URL_REDIS_7_C9S_RHEL9 $AUTHFILE $BREW_RRI
 # ---------------------------------------------------------------------------
 echo "============== Running MRI mirror jobs =============="
 
+# AWS Cluster API Provider
+mirror_registry_image $REG_OACAC_URI $REG_OACAC_DIGEST $REG_OACAC_VERSION $REG_OACAC_DEST $AUTHFILE $BREW_RRI
 # Cluster API Provider Metal3
-#mirror_registry_image $REG_PM3_URI $REG_PM3_DIGEST $REG_PM3_VERSION $REG_PM3_DEST $AUTHFILE
+mirror_registry_image $REG_PM3_URI $REG_PM3_DIGEST $REG_PM3_VERSION $REG_PM3_DEST $AUTHFILE $BREW_RRI
+# Cluster API
+mirror_registry_image $REG_CAPI_URI $REG_CAPI_DIGEST $REG_CAPI_VERSION $REG_CAPI_DEST $AUTHFILE $BREW_RRI
+
+# ---------------------------------------------------------------------------
 
 # openshift4/ose-cli-rhel9
 #mirror_registry_image $REG_OCR_URI $REG_OCR_DIGEST $REG_OCR_VERSION $REG_OCR_DEST $AUTHFILE
-
-# Cluster API
-#mirror_registry_image $REG_CAPI_URI $REG_CAPI_DIGEST $REG_CAPI_VERSION $REG_CAPI_DEST $AUTHFILE
 
 # rhel9/redis-7
 #mirror_registry_image $REG_R7_URI $REG_R7_DIGEST $REG_R7_VERSION $REG_R7_DEST $AUTHFILE
@@ -250,9 +258,6 @@ echo "============== Running MRI mirror jobs =============="
 #mirror_registry_image $REG_FU_URI  $REG_FU_DIGEST  $REG_FC_VERSION $REG_FU_DEST  $AUTHFILE
 ## Flight Control UI (OCP) 
 #mirror_registry_image $REG_FUO_URI $REG_FUO_DIGEST $REG_FC_VERSION $REG_FUO_DEST $AUTHFILE
-
-# AWS Cluster API Provider
-#mirror_registry_image $REG_OACAC_URI $REG_OACAC_DIGEST $REG_OACAC_VERSION $REG_OACAC_DEST $AUTHFILE
 
 # Search rhel9/postgresql-16:9.5-1732622748
 #mirror_registry_image $REG_SEARCH_PG_URI $REG_SEARCH_PG_DIGEST $REG_SEARCH_PG_VERSION $REG_SEARCH_PG_DEST $AUTHFILE
