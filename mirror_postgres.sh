@@ -229,11 +229,11 @@ mirror_external_images acm-operator-bundle rhacm-2.14-rhel-9 redis_7_c9s $DEST_U
 echo "============== Running MRI mirror jobs =============="
 
 # AWS Cluster API Provider
-mirror_registry_image $REG_OACAC_URI $REG_OACAC_DIGEST $REG_OACAC_VERSION $REG_OACAC_DEST $AUTHFILE $BREW_RRI
+#mirror_registry_image $REG_OACAC_URI $REG_OACAC_DIGEST $REG_OACAC_VERSION $REG_OACAC_DEST $AUTHFILE $BREW_RRI
 # Cluster API Provider Metal3
-mirror_registry_image $REG_PM3_URI $REG_PM3_DIGEST $REG_PM3_VERSION $REG_PM3_DEST $AUTHFILE $BREW_RRI
+#mirror_registry_image $REG_PM3_URI $REG_PM3_DIGEST $REG_PM3_VERSION $REG_PM3_DEST $AUTHFILE $BREW_RRI
 # Cluster API
-mirror_registry_image $REG_CAPI_URI $REG_CAPI_DIGEST $REG_CAPI_VERSION $REG_CAPI_DEST $AUTHFILE $BREW_RRI
+#mirror_registry_image $REG_CAPI_URI $REG_CAPI_DIGEST $REG_CAPI_VERSION $REG_CAPI_DEST $AUTHFILE $BREW_RRI
 
 # ---------------------------------------------------------------------------
 
